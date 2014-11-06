@@ -1,4 +1,7 @@
 vimrc
 =====
 
-vim plugins and config
+To use:
+
+Clone this repository into home.
+echo "runtime vimrc" > .vimrc
