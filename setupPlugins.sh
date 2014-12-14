@@ -21,3 +21,7 @@ git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline
 
 # Set up Ctrl-P
 cd ~/.vim && git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
+
+# Currently not using this. Try method at http://ow.ly/FRrHA
+# # Set up vim-latex
+# cd ~/.vim/bundle && git clone git://github.com/lervag/vim-latex
