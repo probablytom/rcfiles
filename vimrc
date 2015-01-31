@@ -77,6 +77,5 @@ let g:airline_powerline_fonts = 1
 " Allow Airline to load.
 set laststatus=2
 
-execute pathogen#infect()
-execute pathogen#infect()
+" Load and run Pathogen. 
 execute pathogen#infect()
