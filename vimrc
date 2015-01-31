@@ -73,4 +73,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " Set up Powerline fonts for Airline.
 let g:airline_powerline_fonts = 1
+
+" Allow Airline to load.
+set laststatus=2
+
+execute pathogen#infect()
+execute pathogen#infect()
 execute pathogen#infect()
