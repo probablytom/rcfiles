@@ -3,7 +3,6 @@
 
 # Install and set up Pathogen.
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-echo "execute pathogen#infect()" >> vimrc
 
 # Install and set up Sensible.
 mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
@@ -14,7 +13,6 @@ cd ~/.vim/bundle && git clone https://github.com/scrooloose/syntastic.git
 # Set up NERD Tree
 cd ~/.vim/bundle
 git clone https://github.com/scrooloose/nerdtree.git
-echo "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif" >> ../vimrc
 
 # Set up Airline.
 git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline 
