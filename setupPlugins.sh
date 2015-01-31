@@ -1,4 +1,4 @@
-# Made by Tom Wallis, 2014. 
+# Made by Tom Wallis, 2014-2015. 
 #To be run on a new system, to get packages &c set up and get vim just the way you like it.
 
 # Install and set up Pathogen.
@@ -14,7 +14,7 @@ cd ~/.vim/bundle && git clone https://github.com/scrooloose/syntastic.git
 # Set up NERD Tree
 cd ~/.vim/bundle
 git clone https://github.com/scrooloose/nerdtree.git
-echo "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif" >> vimrc
+echo "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif" >> ../vimrc
 
 # Set up Airline.
 git clone https://github.com/bling/vim-airline ~/.vim/bundle/vim-airline 
