@@ -4,6 +4,9 @@ syntax on
 
 filetype plugin indent on
 
+" Set up colours.
+colorscheme lapis256
+
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
