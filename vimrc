@@ -24,11 +24,6 @@ set incsearch           " Incremental search
 set hlsearch			" Highlight search terms
 set hidden              " Hide buffers when they are abandoned
 set smartindent
-" size of a hard tabstop
-set tabstop=4
-
-" size of an "indent"
-set shiftwidth=4
 nore ; :
 nore , ;
 
@@ -80,9 +75,9 @@ let g:airline_powerline_fonts = 1
 " Allow Airline to load.
 set laststatus=2
 
-" Fix the tab key to be four spaces. (Tabs can be inserted with C-v <tab>.)
-:set expandtab
-:set tabstop=4
+" Fix the tab key to be four spaces, for python files. (Tabs can be inserted with C-v <tab>.)
+autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 
 " Load and run Pathogen. 
 execute pathogen#infect()
