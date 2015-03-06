@@ -80,5 +80,9 @@ let g:airline_powerline_fonts = 1
 " Allow Airline to load.
 set laststatus=2
 
+" Fix the tab key to be four spaces. (Tabs can be inserted with C-v <tab>.)
+:set expandtab
+:set tabstop=4
+
 " Load and run Pathogen. 
 execute pathogen#infect()
