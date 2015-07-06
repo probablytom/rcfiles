@@ -23,3 +23,8 @@ cd ~/.vim && git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
 # Currently not using this. Try method at http://ow.ly/FRrHA
 # # Set up vim-latex
 # cd ~/.vim/bundle && git clone git://github.com/lervag/vim-latex
+
+# Tabular for vim-markdown and plasticboy's vim-markdown plugin itself.
+cd ~/.vim/bundle && git clone git@github.com:godlygeek/tabular.git    # Tabular
+git clone git@github.com:plasticboy/vim-markdown.git                 # Plasticboy's vim-markdown
+

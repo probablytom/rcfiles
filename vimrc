@@ -79,5 +79,5 @@ set laststatus=2
 autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 
-" Load and run Pathogen. 
+" Load and run Pathogen. (Loads plugins in bundle/)
 execute pathogen#infect()
