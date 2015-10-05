@@ -69,6 +69,9 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 :nmap \e :NERDTreeToggle<CR>
 
+" Allow NERD Tree to navigate folders properly and show arrows. 
+let g:NERDTreeDirArrows=0
+
 " Set up Powerline fonts for Airline.
 let g:airline_powerline_fonts = 1
 
