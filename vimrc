@@ -55,7 +55,7 @@ nore , ;
 
 " Run CtrlP and give it its own keybinding (;)
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-:nmap ; :CtrlPBuffer<CR>
+:nmap ¬ :CtrlPBuffer<CR>
 "Add the settings for CtrlP given at http://statico.github.io/vim.html.
 :let g:ctrlp_map = '<Leader>t'
 :let g:ctrlp_match_window_bottom = 0
@@ -84,3 +84,14 @@ autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 
 " Load and run Pathogen. (Loads plugins in bundle/)
 execute pathogen#infect()
+
+
+" Comment/uncomment lines functions from http://bit.ly/1SZX9R7
+autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+autocmd FileType conf,fstab       let b:comment_leader = '# '
+autocmd FileType tex              let b:comment_leader = '% '
+autocmd FileType mail             let b:comment_leader = '> '
+autocmd FileType vim              let b:comment_leader = '" '
+noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>'"'
