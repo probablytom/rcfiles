@@ -1,5 +1,8 @@
 # Setup script for my .rc files
 
+# Clone necessary rcfile repositories
+git clone git@github.com:probablytom/.vim.git vim
+
 # Move files that we'll link to symbolically rather than delete so we save old versions
 mv ~/.zshrc ~/.zshrc.orig
 mv ~/.vim ~/.vim.orig
