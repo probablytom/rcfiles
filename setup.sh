@@ -7,11 +7,13 @@ git clone git@github.com:probablytom/.vim.git vim
 mv ~/.zshrc ~/.zshrc.orig
 mv ~/.vim ~/.vim.orig
 mv ~/.tmux.conf ~/.tmux.conf.orig
+mv ~/.emacs.d ~/.emacs.d.old
 
 # Create symbolic links to the rcfiles versions of our rc files
 ln -s -f `pwd -P`/zsh/zshrc ~/.zshrc
 ln -s -f `pwd -P`/vim ~/.vim
 ln -s -f `pwd -P`/tmux/tmux.conf ~/.tmux.conf
+ln -s -f `pwd -P`/emacs ~/.emacs.d
 
 # Set up zsh
 cd zsh
@@ -25,3 +27,6 @@ cd vim
 cd ..
 
 # Tmux is already set up. 
+
+
+# Emacs is already set up.
