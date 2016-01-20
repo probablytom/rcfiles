@@ -1,7 +1,7 @@
-" This line should not be removed as it ensures that various options are
+"" This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
-
+"runtime! debian.vim
+"source debian.vim
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
 " options, so any other options should be set AFTER setting 'compatible'.
@@ -36,16 +36,13 @@ execute pathogen#infect()
 
 
 " Set up colours.
-colorscheme lapis256
+colorscheme zenburn
 
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
 
-
 set backup
-set backupdir=~/.vim/backup
-set directory=~/.vim/tmp
 set mouse=a
 set number
 set showcmd             " Show (partial) command in status line.
@@ -114,9 +111,6 @@ set laststatus=2
 " Fix the tab key to be four spaces, for python files. (Tabs can be inserted with C-v <tab>.)
 autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
-
-" Load and run Pathogen. (Loads plugins in bundle/)
-execute pathogen#infect()
 
 " Comment/uncomment lines functions from http://bit.ly/1SZX9R7
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
