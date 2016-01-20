@@ -1,8 +1,39 @@
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages available in Debian.
+runtime! debian.vim
+
+" Uncomment the next line to make Vim more Vi-compatible
+" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
+" options, so any other options should be set AFTER setting 'compatible'.
+"set compatible
+
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+if has("syntax")
+  syntax on
+endif
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+" Source a global configuration file if available
+if filereadable("/etc/vim/vimrc.local")
+  source /etc/vim/vimrc.local
+endif
+
+
+" Load and run Pathogen. (Loads plugins in bundle/)
 execute pathogen#infect()
 
-syntax on
-
-filetype plugin indent on
 
 " Set up colours.
 colorscheme lapis256
@@ -10,6 +41,7 @@ colorscheme lapis256
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
 endif
+
 
 set backup
 set backupdir=~/.vim/backup
@@ -31,6 +63,7 @@ nore , ;
 " Enable line wrapping.
 :nmap j gj
 :nmap k gk
+
 " Change navigation to something BASH/emacs-like.
 :cnoremap <C-a>  <Home>
 :cnoremap <C-b>  <Left>
@@ -53,9 +86,9 @@ nore , ;
 :nmap <C-n> :bnext<CR>
 :nmap <C-p> :bprev<CR>
 
-" Run CtrlP and give it its own keybinding (;)
+" Run CtrlP and give it its own keybinding (\;)
 set runtimepath^=~/.vim/bundle/ctrlp.vim
-:nmap ¬ :CtrlPBuffer<CR>
+:nmap \; :CtrlPBuffer<CR>
 "Add the settings for CtrlP given at http://statico.github.io/vim.html.
 :let g:ctrlp_map = '<Leader>t'
 :let g:ctrlp_match_window_bottom = 0
@@ -85,7 +118,6 @@ autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 " Load and run Pathogen. (Loads plugins in bundle/)
 execute pathogen#infect()
 
-
 " Comment/uncomment lines functions from http://bit.ly/1SZX9R7
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
 autocmd FileType sh,ruby,python   let b:comment_leader = '# '
@@ -94,7 +126,22 @@ autocmd FileType tex              let b:comment_leader = '% '
 autocmd FileType mail             let b:comment_leader = '> '
 autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>'"'
+noremap <silent> ,cx :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>'"'
 
 " Fix movement wrapping for h,l at the ends of lines.
 set whichwrap+=<,>,h,l,[,]
+
+" Fix arrow keys when logged in remotely and using tmux
+set t_ku=OA
+set t_kd=OB
+set t_kr=OC
+set t_kl=OD
+
+" Fixing cursor in $TMUX
+if exists('$TMUX')
+	let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+	let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
