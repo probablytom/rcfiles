@@ -69,7 +69,7 @@ set -sg escape-time 0
 bind r source-file ~/.tmux.conf
 
 #Rebind the prefix to C-x
-unbind C-a
+unbind C-b
 set -g prefix C-x
 bind C-x send-prefix
 
