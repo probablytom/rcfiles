@@ -88,3 +88,4 @@ source $ZSH/oh-my-zsh.sh
 # For reference, the IP of the vps is 207.210.193.250, just in case there's a DNS issue.
 alias vps="ssh probablytom.ddns.net"
 alias emacs="emacs -nw"
+export TERM=xterm-256color
