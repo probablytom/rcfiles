@@ -1,4 +1,5 @@
 # Setup script for my .rc files
+# TOM WALLIS 2016
 
 # Clone necessary rcfile repositories
 git clone git@github.com:probablytom/.vim.git vim
@@ -8,12 +9,14 @@ mv ~/.zshrc ~/.zshrc.orig
 mv ~/.vim ~/.vim.orig
 mv ~/.tmux.conf ~/.tmux.conf.orig
 mv ~/.emacs.d ~/.emacs.d.old
+mv ~/.nvim ~/.nvim.old
 
 # Create symbolic links to the rcfiles versions of our rc files
 ln -s -f `pwd -P`/zsh/zshrc ~/.zshrc
 ln -s -f `pwd -P`/vim ~/.vim
 ln -s -f `pwd -P`/tmux/tmux.conf ~/.tmux.conf
 ln -s -f `pwd -P`/emacs ~/.emacs.d
+ln -s -f `pwd -P`/emacs ~/.nvim
 
 # Set up zsh
 cd zsh
@@ -26,7 +29,16 @@ cd vim
 ./updatePlugins.sh
 cd ..
 
+
+# Set up nvim
+cd nvim
+./setupPlugins.sh
+./updatePlugins.sh
+cd ..
+
+
 # Tmux is already set up. 
 
 
 # Emacs is already set up.
+
