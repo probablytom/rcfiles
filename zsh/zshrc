@@ -1,3 +1,8 @@
+# helper function
+command_exists () {
+    type "$1" &> /dev/null ;
+}
+
 #
 #Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -63,6 +68,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -85,7 +91,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+
+# Some VPS stuff
 # For reference, the IP of the vps is 207.210.193.250, just in case there's a DNS issue.
 alias vps="ssh -l tom probablytom.ddns.net"
+
+# Some editor config stuff
 alias emacs="emacs -nw"
+export EDITOR="vim"
+if command_exists nvim ; then
+    alias vim="nvim"
+fi
 export TERM=xterm-256color
