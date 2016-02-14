@@ -16,7 +16,7 @@ ln -s -f `pwd -P`/zsh/zshrc ~/.zshrc
 ln -s -f `pwd -P`/vim ~/.vim
 ln -s -f `pwd -P`/tmux/tmux.conf ~/.tmux.conf
 ln -s -f `pwd -P`/emacs ~/.emacs.d
-ln -s -f `pwd -P`/emacs ~/.nvim
+ln -s -f `pwd -P`/nvim ~/.config/nvim
 
 # Set up zsh
 cd zsh
