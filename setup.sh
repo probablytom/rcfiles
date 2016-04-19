@@ -51,3 +51,7 @@ sudo cp leiningen/lein /bin
 sudo chmod 755 /bin/lein
 lein
 
+# Set up mutagen for music organisation
+mkdir requirements
+git clone https://github.com/quodlibet/mutagen.git requirements/mutagen
+python requirements/mutagen/setup.py install
