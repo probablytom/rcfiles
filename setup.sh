@@ -43,3 +43,10 @@ cd ..
 
 # Emacs is already set up.
 
+
+# Set up lein
+echo "\nAsking for password so we can set up leiningen for clojure development...\n"
+sudo cp leiningen/lein /bin
+sudo chmod 755 /bin/lein
+lein
+
