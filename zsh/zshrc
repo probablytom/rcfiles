@@ -74,3 +74,5 @@ if command_exists mpv ; then
 elif command_exists mplayer ; then
     alias play="mplayer"
 fi
+
+alias sort_music="python ~/.rcfiles/scripts/music_organizer.py"
