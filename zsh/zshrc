@@ -67,3 +67,10 @@ if command_exists nvim ; then
     alias vim="nvim"
 fi
 export TERM=xterm-256color
+
+# For commandline media playing
+if command_exists mpv ; then
+    alias play="mpv"
+elif command_exists mplayer ; then
+    alias play="mplayer"
+fi
