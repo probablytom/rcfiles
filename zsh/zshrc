@@ -3,6 +3,23 @@ command_exists () {
     type "$1" &> /dev/null ;
 }
 
+# What OS are we running?
+# TODO: Cope with cygwin
+platform="unknown"
+if [[ $(uname) == "Darwin" ]] ; then
+	platform='OSX'
+elif [[ $(uname) == 'Linux' ]] ; then
+	if command_exists apt-get ; then
+		platform='deb-like'
+	elif command_exists rpm ; then
+		platform='redhat-like'
+	elif command_exists pacman ; then
+		platform='arch-like'
+	else 
+		platform='unknown-linux'
+	fi
+fi
+
 #
 #Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -11,8 +28,14 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="theunraveler"
-#ZSH_THEME="agnoster"
+if [[ platform == "OSX" ]] ; then
+		ZSH_THEME="theunraveler"
+elif [[ platform == "deb-like" ]] ; then 
+		ZSH_THEME="agnoster"
+else
+		ZSH_THEME="random"
+		echo "No theme set up for this setup! Going random. Edit zshrc to fix."
+fi
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -67,23 +90,6 @@ if command_exists nvim ; then
     alias vim="nvim"
 fi
 export TERM=xterm-256color
-
-# What OS are we running?
-# TODO: Cope with cygwin
-platform="unknown"
-if [[ $(uname) == "Darwin" ]] ; then
-	platform='OSX'
-elif [[ $(uname) == 'Linux' ]] ; then
-	if command_exists apt-get ; then
-		platform='deb-like'
-	elif command_exists rpm ; then
-		platform='redhat-like'
-	elif command_exists pacman ; then
-		platform='arch-like'
-	else 
-		platform='unknown-linux'
-	fi
-fi
 
 # For commandline media playing
 if command_exists mpv ; then
