@@ -17,6 +17,8 @@ ln -s -f `pwd -P`/vim ~/.vim
 ln -s -f `pwd -P`/tmux/tmux.conf ~/.tmux.conf
 ln -s -f `pwd -P`/emacs ~/.emacs.d
 ln -s -f `pwd -P`/nvim ~/.config/nvim
+ln -s -f `pwd -P`/vim/vimrc ~/.vimrc
+ln -s -f `pwd -P`/ ~/.rcfiles
 
 # Set up zsh
 cd zsh
@@ -42,3 +44,14 @@ cd ..
 
 # Emacs is already set up.
 
+
+# Set up lein
+echo "\nAsking for password so we can set up leiningen for clojure development...\n"
+sudo cp leiningen/lein /bin
+sudo chmod 755 /bin/lein
+lein
+
+# Set up mutagen for music organisation
+mkdir requirements
+git clone https://github.com/quodlibet/mutagen.git requirements/mutagen
+python requirements/mutagen/setup.py install
