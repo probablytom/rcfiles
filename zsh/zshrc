@@ -107,4 +107,5 @@ else
 		fi  # Change to elif to manage linux options
 fi
 
+alias dlpaper="wget -nc --download-prefix=~/Documents/Papers/ "
 alias sort_music="python ~/.rcfiles/scripts/music_organizer.py"
