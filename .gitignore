@@ -3,3 +3,6 @@ vim/
 /vim*
 /vim/
 /requirements
+/scripts
+/scripts/*
+

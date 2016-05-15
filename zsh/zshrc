@@ -1,6 +1,6 @@
 # Helper function
 command_exists () {
-    type "$1" &> /dev/null ;
+    echo `type "$1" &> /dev/null ;`
 }
 
 # What OS are we running?
@@ -90,6 +90,16 @@ if command_exists nvim ; then
     alias vim="nvim"
 fi
 export TERM=xterm-256color
+
+# Configure behavior in TMUX(This should always be at the bottom of this file!)
+alias tmux-attach-or-create-main-session="tmux new-session -A -s main"
+if [ "$TMUX" -ne "" ] ; then
+    # Don't run tmux commands if tmux doesn't exist!
+		type -P $i &>/dev/null  && $TMUXALIVE="1" || "2"
+    if $(command_exists tmux) ; then
+        tmux-attach-or-create-main-session
+    fi
+fi
 
 # For commandline media playing
 if command_exists mpv ; then
