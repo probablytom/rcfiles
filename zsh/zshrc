@@ -3,6 +3,10 @@ command_exists () {
     echo `type "$1" &> /dev/null ;`
 }
 
+# Set customisation files location
+export ZSH_CUSTOM=~/.zshrc/custom/
+echo $ZSH_CUSTOM
+
 # What OS are we running?
 # TODO: Cope with cygwin
 export platform=$(uname)
@@ -31,7 +35,7 @@ export ZSH=~/.oh-my-zsh
 if [[ $platform == "OSX" ]] ; then
 		ZSH_THEME="theunraveler"
 elif [[ $platform == "deb-like" ]] ; then 
-		ZSH_THEME="agnoster"
+		ZSH_THEME="gitster"  # From zsh/custom/themes
 else
 		ZSH_THEME="random"
 		echo "No theme set up for this setup! Going random. Edit zshrc to fix."
