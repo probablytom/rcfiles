@@ -34,7 +34,7 @@ export ZSH=~/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 if [[ $platform == "OSX" ]] ; then
 		ZSH_THEME="theunraveler"
-elif [[ $platform == "deb-like" ]] ; then 
+elif [[ $platform == "deb-like" || $platform == "redhat-like" ]] ; then 
 		ZSH_THEME="gitster"  # From zsh/custom/themes
 else
 		ZSH_THEME="random"
