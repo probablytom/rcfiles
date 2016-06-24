@@ -9,15 +9,14 @@ mv ~/.zshrc ~/.zshrc.orig
 mv ~/.vim ~/.vim.orig
 mv ~/.tmux.conf ~/.tmux.conf.orig
 mv ~/.emacs.d ~/.emacs.d.old
-mv ~/.nvim ~/.nvim.old
 
 # Create symbolic links to the rcfiles versions of our rc files
 ln -s -f `pwd -P`/zsh/zshrc ~/.zshrc
 ln -s -f `pwd -P`/vim ~/.vim
+ln -s -f `pwd -P`/vim/vimrc ~/.vimrc
 ln -s -f `pwd -P`/tmux/tmux.conf ~/.tmux.conf
 ln -s -f `pwd -P`/emacs ~/.emacs.d
 ln -s -f `pwd -P`/nvim ~/.config/nvim
-ln -s -f `pwd -P`/vim/vimrc ~/.vimrc
 ln -s -f `pwd -P`/ ~/.rcfiles
 
 # Set up zsh
@@ -46,7 +45,7 @@ cd ..
 
 
 # Set up lein
-echo "\nAsking for password so we can set up leiningen for clojure development...\n"
+echo "\nGoing through sudo so we can set up leiningen for clojure development...\n"
 sudo cp leiningen/lein /bin
 sudo chmod 755 /bin/lein
 lein
