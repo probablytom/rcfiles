@@ -5,32 +5,30 @@ if has('vim_starting')
   set nocompatible               " Be iMproved
 
   " Required:
-  set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
+  set runtimepath+=~/.rcfiles/nvim/dein
 endif
 
-let neobundle_readme=expand('~/.config/nvim/bundle/neobundle.vim/README.md')
+"****************************************************************************
+"" Some Dein magic
+"****************************************************************************
+
+call dein#begin(expand('~/.rcfiles/nvim/dein-plugins'))
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/vimproc.vim', {
+			\ 'build': {
+				\ 'mac': 'make -f make_mac.mak',
+				\ 'linux': 'make',
+				\ 'unix': 'gmake',
+			\			},
+			\		})
+call dein#add('Shougo/unite.vim')
+call dein#add('scrooloose/nerdtree')
+call dein#add('Shougo/deoplete.nvim')
+call dein#add('davidhalter/jedi-vim')
+call dein#end()
 
 let g:vim_bootstrap_langs = "javascript,haskell,lisp,python,c"
 let g:vim_bootstrap_editor = "nvim"				" nvim or vim
-
-if !filereadable(neobundle_readme)
-  echo "Installing NeoBundle..."
-  echo ""
-  silent !mkdir -p ~/.config/nvim/bundle
-  silent !git clone https://github.com/Shougo/neobundle.vim ~/.config/nvim/bundle/neobundle.vim/
-  let g:not_finsh_neobundle = "yes"
-
-  " Run shell script if exist on custom select language
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/haskell/haskell.sh | bash -s stable
-endif
-
-" Required:
-call neobundle#begin(expand('~/.config/nvim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
@@ -50,82 +48,8 @@ if has("autocmd")
   filetype plugin indent on
 endif
 
-
-"*****************************************************************************
-"" NeoBundle install packages
-"*****************************************************************************
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs.git'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'sheerun/vim-polyglot'
-NeoBundle 'vim-scripts/grep.vim'
-NeoBundle 'vim-scripts/CSApprox'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle "Yggdroot/indentLine"
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-
-"" Vim-Session
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-session'
-
-if v:version >= 703
-  NeoBundle 'Shougo/vimshell.vim'
-endif
-
-if v:version >= 704
-  "" Snippets
-  NeoBundle 'SirVer/ultisnips'
-  NeoBundle 'FelikZ/ctrlp-py-matcher'
-endif
-
-NeoBundle 'honza/vim-snippets'
-
 " Set up colours.
 colorscheme zenburn
-
-"" Vim-Bootstrap Updater by sherzberg
-NeoBundle 'avelino/vim-bootstrap-updater'
-
-"" Custom bundles
-"" Haskell Bundle
-NeoBundle "eagletmt/neco-ghc"
-NeoBundle "dag/vim2hs"
-NeoBundle "pbrisbin/vim-syntax-shakespeare"
-
-"" Lisp Bundle
-NeoBundle 'vim-scripts/slimv.vim'
-
-NeoBundle 'vim-scripts/c.vim'
-
-"" Javascript Bundle
-NeoBundle 'jelera/vim-javascript-syntax'
-
-"" Python Bundle
-NeoBundle "davidhalter/jedi-vim"
-
-"" Include user's extra bundle
-if filereadable(expand("~/.config/nvim/local_bundles.vim"))
-  source ~/.config/nvim/local_bundles.vim
-endif
-
-call neobundle#end()
-
-NeoBundleCheck
 
 "" Encoding
 set encoding=utf-8
@@ -175,12 +99,6 @@ set noswapfile
 set fileformats=unix,mac,dos
 set shell=/bin/zsh
 
-" session management
-let g:session_directory = "~/.config/nvim/session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
-
 " Change keybindings...
 " Enable line wrapping.
 :nmap j gj
@@ -198,26 +116,24 @@ if has("gui_running")
   endif
 else
   let g:csapprox_loaded = 1
-
-
 endif
 
 if &term =~ '256color'
   set t_ut=
 endif
 
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
-
-if exists("*fugitive#statusline")
-  set statusline+=%{fugitive#statusline()}
-endif
-
+" set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
+" 
+" if exists("*fugitive#statusline")
+"   set statusline+=%{fugitive#statusline()}
+" endif
+" 
 " vim-airline
-let g:airline_theme = 'powerlineish'
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
+" let g:airline_theme = 'powerlineish'
+" let g:airline#extensions#syntastic#enabled = 1
+" let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tagbar#enabled = 1
 
 "*****************************************************************************
 "" Abbreviations and Mappings
