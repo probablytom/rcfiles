@@ -140,6 +140,14 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
+noremap :ga :Gwrite<CR>
+noremap :gc :Gcommit<CR>
+noremap :gsh :Gpush<CR>
+noremap :gll :Gpull<CR>
+noremap :gs :Gstatus<CR>
+noremap :gb :Gblame<CR>
+noremap :gd :Gvdiff<CR>
+noremap :gr :Gremove<CR>
 
 " Add a key to clear search highlighting when you no longer need it.
 :nmap \q :nohlsearch<CR>
@@ -297,7 +305,7 @@ let g:jedi#smart_auto_mappings = 0
 
 " To fix no text input bug
 noremap <C-c> <Esc>
-let g:jedi#force_py_version = 3
+let g:jedi#force_py_version = 3t
 
 " syntastic
 let g:syntastic_python_checkers=['python', 'flake8']
