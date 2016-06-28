@@ -29,6 +29,7 @@ call dein#add('Shougo/vimshell.vim')
 call dein#add('davidhalter/jedi-vim')
 call dein#add('tpope/vim-fugitive')
 call dein#add('airblade/vim-gitgutter')
+call dein#add('nvie/vim-flake8')
 call dein#end()
 
 if dein#check_install()
@@ -141,14 +142,14 @@ noremap <Leader>gs :Gstatus<CR>
 noremap <Leader>gb :Gblame<CR>
 noremap <Leader>gd :Gvdiff<CR>
 noremap <Leader>gr :Gremove<CR>
-noremap :ga :Gwrite<CR>
-noremap :gc :Gcommit<CR>
-noremap :gsh :Gpush<CR>
-noremap :gll :Gpull<CR>
-noremap :gs :Gstatus<CR>
-noremap :gb :Gblame<CR>
-noremap :gd :Gvdiff<CR>
-noremap :gr :Gremove<CR>
+cnoreabbrev ga :Gwrite<CR>
+cnoreabbrev gc :Gcommit<CR>
+cnoreabbrev gsh :Gpush<CR>
+cnoreabbrev gll :Gpull<CR>
+cnoreabbrev gs :Gstatus<CR>
+cnoreabbrev gb :Gblame<CR>
+cnoreabbrev gd :Gvdiff<CR>
+cnoreabbrev gr :Gremove<CR>
 
 " Add a key to clear search highlighting when you no longer need it.
 :nmap \q :nohlsearch<CR>
@@ -173,6 +174,9 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 :let g:ctrlp_switch_buffer = 0
 
 " syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
@@ -180,7 +184,12 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
-
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_flake8_exec = 'python3'
+let g:syntastic_python_flake8_args = ['-m', 'flake8']
+let g:syntastic_python_checkers=['python', 'flake8']
 
 " Remind NERD Tree to close when it's the only open window.
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -301,15 +310,12 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<leader>ca"
+let g:jedi#completions_command = "<C-space>"
 let g:jedi#smart_auto_mappings = 0
 
 " To fix no text input bug
 noremap <C-c> <Esc>
 let g:jedi#force_py_version = 3
-
-" syntastic
-let g:syntastic_python_checkers=['python', 'flake8']
 
 " vim-airline
 let g:airline#extensions#virtualenv#enabled = 1
