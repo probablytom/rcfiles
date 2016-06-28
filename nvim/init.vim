@@ -28,6 +28,7 @@ call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/vimshell.vim')
 call dein#add('davidhalter/jedi-vim')
 call dein#add('tpope/vim-fugitive')
+call dein#add('airblade/vim-gitgutter')
 call dein#end()
 
 if dein#check_install()
@@ -305,7 +306,7 @@ let g:jedi#smart_auto_mappings = 0
 
 " To fix no text input bug
 noremap <C-c> <Esc>
-let g:jedi#force_py_version = 3t
+let g:jedi#force_py_version = 3
 
 " syntastic
 let g:syntastic_python_checkers=['python', 'flake8']
