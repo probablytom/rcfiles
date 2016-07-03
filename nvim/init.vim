@@ -33,6 +33,8 @@ call dein#add('nvie/vim-flake8')
 call dein#add('zchee/deoplete-jedi')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
+call dein#add('guns/vim-clojure-static')
+call dein#add('tpope/vim-foreplay')
 call dein#end()
 
 if dein#check_install()
