@@ -30,6 +30,9 @@ call dein#add('davidhalter/jedi-vim')
 call dein#add('tpope/vim-fugitive')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('nvie/vim-flake8')
+call dein#add('zchee/deoplete-jedi')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
 call dein#end()
 
 if dein#check_install()
@@ -56,6 +59,7 @@ filetype plugin indent on
 
 " Set up colours.
 colorscheme zenburn
+let g:airline_theme = 'luna'
 
 "" Encoding
 set encoding=utf-8
@@ -316,9 +320,6 @@ let g:jedi#smart_auto_mappings = 0
 " To fix no text input bug
 noremap <C-c> <Esc>
 let g:jedi#force_py_version = 3
-
-" vim-airline
-let g:airline#extensions#virtualenv#enabled = 1
 
 " Fix movement wrapping for h,l at the ends of lines.
 set whichwrap+=<,>,h,l,[,]

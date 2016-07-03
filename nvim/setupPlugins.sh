@@ -37,3 +37,7 @@ mkdir -p ~/.rcfiles/nvim/dein
 git clone https://github.com/Shougo/dein.vim.git \
 	~/.rcfiles/nvim/dein
 source ~/.rcfiles/nvim/dein/bin/installer.sh  # Go through the installation process
+
+# Set up powerline fonts
+git clone git@github.com:powerline/fonts.git
+./fonts/install.sh
