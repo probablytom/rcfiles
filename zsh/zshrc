@@ -121,5 +121,9 @@ else
 		fi  # Change to elif to manage linux options
 fi
 
+if command_exists i3lock ; then
+		alias i3lock="i3lock -c 000000"
+fi
+
 alias dlpaper="wget -nc --download-prefix=~/Documents/Papers/ "
 alias sort_music="python ~/.rcfiles/scripts/music_organizer.py"
