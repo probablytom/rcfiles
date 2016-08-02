@@ -87,8 +87,7 @@ set visualbell t_vb=
 
 " Various settings
 set backup
-set mouse=a
-set number
+set relativenumber
 set ruler
 set showcmd             " Show (partial) command in status line.
 set showmatch           " Show matching brackets.
