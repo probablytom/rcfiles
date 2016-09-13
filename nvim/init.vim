@@ -88,6 +88,7 @@ set visualbell t_vb=
 " Various settings
 set backup
 set relativenumber
+set number              " For hybrid numbering
 set ruler
 set showcmd             " Show (partial) command in status line.
 set showmatch           " Show matching brackets.
