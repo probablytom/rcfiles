@@ -7,12 +7,15 @@ command_exists () {
 export ZSH_CUSTOM=~/.zshrc/custom/
 echo $ZSH_CUSTOM
 
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+
 # What OS are we running?
 # TODO: Cope with cygwin
 export platform=$(uname)
 if [[ $platform == "Darwin" ]] ; then
 	platform='OSX'
 elif [[ $platform == 'Linux' ]] ; then
+	export PATH="$PATH:$HOME/.linuxbrew/bin"
 	if command_exists apt-get ; then
 		platform='deb-like'
 	elif command_exists rpm ; then
@@ -77,7 +80,6 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,7 +87,7 @@ export LANG=en_GB.UTF-8
 
 # Some VPS stuff
 # For reference, the IP of the vps is 207.210.193.250, just in case there's a DNS issue.
-alias vps="ssh -l tom probablytom.ddns.net"
+alias vps="ssh -l tom tom.coffee"
 
 # Some editor config stuff
 alias emacs="emacs -nw"
@@ -127,3 +129,4 @@ fi
 
 alias dlpaper="wget -nc --download-prefix=~/Documents/Papers/ "
 alias sort_music="python ~/.rcfiles/scripts/music_organizer.py"
+
