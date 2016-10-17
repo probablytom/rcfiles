@@ -97,7 +97,6 @@ set smartcase           " Do smart case matching
 set incsearch           " Incremental search
 set hlsearch			" Highlight search terms
 set hidden              " Hide buffers when they are abandoned
-set smartindent
 nore ; :
 nore , ;
 
@@ -231,9 +230,10 @@ let g:airline_powerline_fonts = 1
 " Allow Airline to load.
 set laststatus=2
 
-" Fix the tab key to be four spaces, for python files. (Tabs can be inserted with C-v <tab>.)
-autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
+" language-specific indents
+autocmd FileType * set tabstop=2|set shiftwidth=2|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+autocmd Filetype haskell setlocal ts=2 sw=2 expandtab
 
 " Comment/uncomment lines functions from http://bit.ly/1SZX9R7
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
@@ -242,6 +242,7 @@ autocmd FileType conf,fstab       let b:comment_leader = '# '
 autocmd FileType tex              let b:comment_leader = '% '
 autocmd FileType mail             let b:comment_leader = '> '
 autocmd FileType vim              let b:comment_leader = '" '
+autocmd FileType haskell          let b:comment_leader = '--'
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cx :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>'"'
 
@@ -380,3 +381,4 @@ else
 	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" Haskell-specific indentation
