@@ -232,6 +232,7 @@ set laststatus=2
 
 " language-specific indents
 autocmd FileType * set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType tex set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd Filetype haskell setlocal ts=2 sw=2 expandtab
 
