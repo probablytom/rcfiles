@@ -86,8 +86,7 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_GB.UTF-8
 
 # Some VPS stuff
-# For reference, the IP of the vps is 207.210.193.250, just in case there's a DNS issue.
-alias vps="ssh -l tom tom.coffee"
+alias vps="ssh -l tom 178.62.48.172"
 
 # Some editor config stuff
 alias emacs="emacs -nw"
