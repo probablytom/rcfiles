@@ -110,11 +110,6 @@ set noswapfile
 set fileformats=unix,mac,dos
 set shell=/bin/zsh
 
-" Change keybindings...
-" Enable line wrapping.
-:nmap j gj
-:nmap k gk
-
 set mousemodel=popup
 set t_co=256
 set gfn=monospace\ 10
