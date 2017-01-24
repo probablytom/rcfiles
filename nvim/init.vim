@@ -34,7 +34,7 @@ call dein#add('zchee/deoplete-jedi')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('guns/vim-clojure-static')
-call dein#add('tpope/vim-foreplay')
+call dein#add('tpope/vim-fireplace')
 call dein#add('klen/python-mode')
 call dein#end()
 
@@ -228,9 +228,17 @@ set laststatus=2
 
 " language-specific indents
 autocmd FileType * set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType txt set tabstop=2|set shiftwidth=2|set expandtab
 autocmd FileType tex set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd Filetype haskell setlocal ts=2 sw=2 expandtab
+
+" filetype-specific spell checking
+autocmd FileType tex setlocal spell spelllang=en_gb
+autocmd FileType plaintex setlocal spell spelllang=en_gb
+autocmd FileType latex setlocal spell spelllang=en_gb
+autocmd FileType txt setlocal spell spelllang=en_gb
+autocmd FileType text setlocal spell spelllang=en_gb
 
 " Comment/uncomment lines functions from http://bit.ly/1SZX9R7
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
