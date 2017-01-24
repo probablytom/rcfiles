@@ -7,7 +7,7 @@ command_exists () {
 export ZSH_CUSTOM=~/.zshrc/custom/
 echo $ZSH_CUSTOM
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/tom/.rcfiles/leiningen"
 
 # What OS are we running?
 # TODO: Cope with cygwin
