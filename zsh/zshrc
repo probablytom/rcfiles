@@ -76,7 +76,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git, docker)
 
 # User configuration
 
@@ -129,3 +129,6 @@ fi
 alias dlpaper="wget -nc --download-prefix=~/Documents/Papers/ "
 alias sort_music="python ~/.rcfiles/scripts/music_organizer.py"
 
+eval $(/usr/libexec/path_helper -s)
+
+alias gdiff="git diff --word-diff"
