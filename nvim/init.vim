@@ -34,7 +34,8 @@ call dein#add('zchee/deoplete-jedi')
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('guns/vim-clojure-static')
-call dein#add('tpope/vim-foreplay')
+call dein#add('tpope/vim-fireplace')
+call dein#add('klen/python-mode')
 call dein#end()
 
 if dein#check_install()
@@ -97,7 +98,6 @@ set smartcase           " Do smart case matching
 set incsearch           " Incremental search
 set hlsearch			" Highlight search terms
 set hidden              " Hide buffers when they are abandoned
-set smartindent
 nore ; :
 nore , ;
 
@@ -110,11 +110,6 @@ set nobackup
 set noswapfile
 set fileformats=unix,mac,dos
 set shell=/bin/zsh
-
-" Change keybindings...
-" Enable line wrapping.
-:nmap j gj
-:nmap k gk
 
 set mousemodel=popup
 set t_co=256
@@ -231,9 +226,19 @@ let g:airline_powerline_fonts = 1
 " Allow Airline to load.
 set laststatus=2
 
-" Fix the tab key to be four spaces, for python files. (Tabs can be inserted with C-v <tab>.)
-autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
+" language-specific indents
+autocmd FileType * set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType txt set tabstop=2|set shiftwidth=2|set expandtab
+autocmd FileType tex set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+autocmd Filetype haskell setlocal ts=2 sw=2 expandtab
+
+" filetype-specific spell checking
+autocmd FileType tex setlocal spell spelllang=en_gb
+autocmd FileType plaintex setlocal spell spelllang=en_gb
+autocmd FileType latex setlocal spell spelllang=en_gb
+autocmd FileType txt setlocal spell spelllang=en_gb
+autocmd FileType text setlocal spell spelllang=en_gb
 
 " Comment/uncomment lines functions from http://bit.ly/1SZX9R7
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
@@ -242,6 +247,7 @@ autocmd FileType conf,fstab       let b:comment_leader = '# '
 autocmd FileType tex              let b:comment_leader = '% '
 autocmd FileType mail             let b:comment_leader = '> '
 autocmd FileType vim              let b:comment_leader = '" '
+autocmd FileType haskell          let b:comment_leader = '--'
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cx :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>'"'
 
@@ -380,3 +386,26 @@ else
 	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+""" PYMODE
+" syntax highlighting
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+let g:pymode_rope = 1
+
+" Documentation
+let g:pymode_doc = 1
+let g:pymode_doc_key = 'K'
+
+"Linting
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+" Auto check on save
+let g:pymode_lint_write = 1
+
+" Support virtualenv
+let g:pymode_virtualenv = 1
+
+" Don't autofold code
+let g:pymode_folding = 0
