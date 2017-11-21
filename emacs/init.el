@@ -1,55 +1,34 @@
-;;; init.el --- Where all the magic begins
+;;; init.el --- Spacemacs Initialization File
 ;;
-;; Part of the Emacs Starter Kit
+;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
 ;;
-;; This is the first thing to get loaded.
+;; Author: Sylvain Benner <sylvain.benner@gmail.com>
+;; URL: https://github.com/syl20bnr/spacemacs
 ;;
+;; This file is not part of GNU Emacs.
+;;
+;;; License: GPLv3
 
-;; load Org-mode from source when the ORG_HOME environment variable is set
-(when (getenv "ORG_HOME")
-  (let ((org-lisp-dir (expand-file-name "lisp" (getenv "ORG_HOME"))))
-    (when (file-directory-p org-lisp-dir)
-      (add-to-list 'load-path org-lisp-dir)
-      (require 'org))))
+;; Without this comment emacs25 adds (package-initialize) here
+;; (package-initialize)
 
-;; load the starter kit from the `after-init-hook' so all packages are loaded
-(add-hook 'after-init-hook
- `(lambda ()
-    ;; remember this directory
-    (setq starter-kit-dir
-          ,(file-name-directory (or load-file-name (buffer-file-name))))
-    ;; only load org-mode later if we didn't load it just now
-    ,(unless (and (getenv "ORG_HOME")
-                  (file-directory-p (expand-file-name "lisp"
-                                                      (getenv "ORG_HOME"))))
-       '(require 'org))
-    ;; load up the starter kit
-    (org-babel-load-file (expand-file-name "starter-kit.org" starter-kit-dir))))
+;; Increase gc-cons-threshold, depending on your system you may set it back to a
+;; lower value in your dotfile (function `dotspacemacs/user-config')
+(setq gc-cons-threshold 100000000)
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("org" . "http://orgmode.org/elpa/")
-                        ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")))
+(defconst spacemacs-version         "0.200.10" "Spacemacs version.")
+(defconst spacemacs-emacs-min-version   "24.4" "Minimal version of Emacs.")
 
-(package-initialize)
-(require 'evil)
-(evil-mode 1)
-(define-key evil-insert-state-map [escape] 'evil-normal-state)
-(define-key evil-insert-state-map (kbd "jk") 'evil-normal-state)
-(define-key evil-insert-state-map (kbd "jj") 'insert-jay)
-(setcdr evil-insert-state-map nil)
-
-(defun insert-jay ()
-  (interactive)
-  (insert "j"))
-(evil-mode)
-
-; Powerline
-(require 'powerline)
-(powerline-center-evil-theme)
-
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
-
-(load-theme 'zenburn t)
+(if (not (version<= spacemacs-emacs-min-version emacs-version))
+    (error (concat "Your version of Emacs (%s) is too old. "
+                   "Spacemacs requires Emacs version %s or above.")
+           emacs-version spacemacs-emacs-min-version)
+  (load-file (concat (file-name-directory load-file-name)
+                     "core/core-load-paths.el"))
+  (require 'core-spacemacs)
+  (spacemacs/init)
+  (configuration-layer/sync)
+  (spacemacs-buffer/display-startup-note)
+  (spacemacs/setup-startup-hook)
+  (require 'server)
+  (unless (server-running-p) (server-start)))
