@@ -9,6 +9,7 @@ mv ~/.zshrc ~/.zshrc.orig
 mv ~/.vim ~/.vim.orig
 mv ~/.tmux.conf ~/.tmux.conf.orig
 mv ~/.emacs.d ~/.emacs.d.old
+mv ~/.spacemacs ~/.spacemacs.old
 
 # Create symbolic links to the rcfiles versions of our rc files
 ln -s -f `pwd -P`/zsh/zshrc ~/.zshrc
@@ -19,6 +20,7 @@ ln -s -f `pwd -P`/emacs ~/.emacs.d
 mkdir ~/.config  # Incase it doesn't alrteady exist
 ln -s -f `pwd -P`/nvim ~/.config/nvim
 ln -s -f `pwd -P`/ ~/.rcfiles
+ln -s -f `pwd -P`/spacemacs/.spacemacs ~/.spacemacs
 
 # Set up zsh
 cd zsh
