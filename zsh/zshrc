@@ -14,6 +14,8 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 export platform=$(uname)
 if [[ $platform == "Darwin" ]] ; then
 	platform='OSX'
+elif [[ $platform == "FreeBSD" ]] ; then
+  platform='bsd'
 elif [[ $platform == 'Linux' ]] ; then
 	export PATH="$PATH:$HOME/.linuxbrew/bin"
 	if command_exists apt-get ; then
@@ -35,7 +37,7 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-if [[ $platform == "OSX" ]] ; then
+if [[ $platform == "OSX" || $platform == 'bsd' ]] ; then
 		ZSH_THEME="theunraveler"
 elif [[ $platform == "deb-like" || $platform == "redhat-like" ]] ; then 
 		ZSH_THEME="gitster"  # From zsh/custom/themes
