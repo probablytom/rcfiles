@@ -1,136 +1,115 @@
-# Helper function
-command_exists () {
-    echo `type "$1" &> /dev/null ;`
-}
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set customisation files location
-export ZSH_CUSTOM=~/.zshrc/custom/
-echo $ZSH_CUSTOM
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.rcfiles/leiningen:$HOME/go/bin"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="theunraveler"
 
-# What OS are we running?
-# TODO: Cope with cygwin
-export platform=$(uname)
-if [[ $platform == "Darwin" ]] ; then
-	platform='OSX'
-elif [[ $platform == "FreeBSD" ]] ; then
-  platform='bsd'
-elif [[ $platform == 'Linux' ]] ; then
-	export PATH="$PATH:$HOME/.linuxbrew/bin"
-	if command_exists apt-get ; then
-		platform='deb-like'
-	elif command_exists rpm ; then
-		platform='redhat-like'
-	elif command_exists pacman ; then
-		platform='arch-like'
-	else 
-		platform='unknown-linux'
-	fi
-fi
-
-#
-#Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-if [[ $platform == "OSX" || $platform == 'bsd' ]] ; then
-		ZSH_THEME="theunraveler"
-elif [[ $platform == "deb-like" || $platform == "redhat-like" ]] ; then 
-		ZSH_THEME="gitster"  # From zsh/custom/themes
-else
-		ZSH_THEME="random"
-		echo "No theme set up for this setup! Going random. Edit zshrc to fix."
-fi
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="true"
+# CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git, docker)
-
-# User configuration
-
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-export LANG=en_GB.UTF-8
+# User configuration
 
-# Some VPS stuff
-alias vps="ssh -l tom 178.62.48.172"
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Some editor config stuff
-alias emacs="emacs -nw"
-export EDITOR="vim"
-if command_exists nvim ; then
-    alias vim="nvim"
-fi
-export TERM=xterm-256color
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# Configure behavior in TMUX(This should always be at the bottom of this file!)
-alias tmux-attach-or-create-main-session="tmux new-session -A -s main"
-if [ "$TMUX" -ne "" ] ; then
-    # Don't run tmux commands if tmux doesn't exist!
-		type -P $i &>/dev/null  && $TMUXALIVE="1" || "2"
-    if $(command_exists tmux) ; then
-        tmux-attach-or-create-main-session
-    fi
-fi
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-# For commandline media playing
-if command_exists mpv ; then
-    alias play="mpv --no-audio-display"
-elif command_exists mplayer ; then
-    alias play="mplayer"
-else
-		# We don't have a music player installed.
-		if [[platform == 'OSX']] ; then
-				if command_exists brew ; then
-						# Offer to install mpv
-				else
-						# Offer to install brew and mpv
-				fi
-		fi  # Change to elif to manage linux options
-fi
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-if command_exists i3lock ; then
-		alias i3lock="i3lock -c 000000"
-fi
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias dlpaper="wget -nc --download-prefix=~/Documents/Papers/ "
-alias sort_music="python ~/.rcfiles/scripts/music_organizer.py"
 
-eval $(/usr/libexec/path_helper -s)
+### probablytom:MARK custom additions
+export EDITOR=/usr/bin/nvim
+alias phd="cd $HOME/Documents/workspace/thesis"
+alias exp="cd $HOME/Documents/workspace/analysis"
+export PATH=$PATH:/usr/local/bin
 
-alias gdiff="git diff --word-diff"
+export TERMINAL=`which mate-terminal`
+
+alias vim=nvim
+alias t=gitui
+
+giveme () { ssh $1 -t tmux attach; }
